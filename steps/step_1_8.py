@@ -6,7 +6,7 @@ class Server:
     servers = []
 
     def __init__(self, buffer=[], link=''):
-        self.buffer = buffer
+        self.buffer = buffer[:]
         self.ip = Server.number
         self.link = link
         Server.number += 1
@@ -28,7 +28,7 @@ class Router:
 
     def __init__(self, links=[], buffer=[]):
         self.links = links  # список для хранения link_ов Routera
-        self.buffer = buffer  # список для хранения принятых от серверов пакетов (объектов класса Data).
+        self.buffer = buffer[:]  # список для хранения принятых от серверов пакетов (объектов класса Data).
 
     def link(self, servers):
         self.links.append(servers)
@@ -41,20 +41,12 @@ class Router:
 
     def send_data(self):  # для отправки всех пакетов (объектов класса Data) из буфера роутера соответствующим серверам (после отправки буфер должен очищаться)
         ips = [a.ip for a in self.links]
-        #print(ips)
-        for a in self.buffer:
-            #print(a, a.ip,a.data)
-            if a.ip in ips:
-                #print(a.ip)
-                for b in Server.servers:
+        for b in Server.servers:
+            for a in self.buffer:
+                if a.ip in ips:
                     if a.ip == b.ip:
-                        #print(b.ip)
-                        print(a, a.data, ' что добавляем ')
                         b.buffer.append(a)
-                        print(b.buffer,b.ip ,' куда добавили ')
-
-
-
+        self.buffer=[]
 
 class Data:
     def __init__(self, data, ip):
@@ -74,11 +66,10 @@ router.link(sv_to)
 sv_from.send_data(Data("Hello", sv_to.get_ip()))
 sv_from2.send_data(Data("Hello", sv_to.get_ip()))
 sv_to.send_data(Data("Hi", sv_from.get_ip()))
-#print(sv_from.buffer)
 router.send_data()
 # msg_lst_from = sv_from.get_data()
 # msg_lst_to = sv_to.get_data()
 
-print(sv_from.buffer,sv_from.ip)
+#print(sv_from.buffer,sv_from.ip)
 
 
