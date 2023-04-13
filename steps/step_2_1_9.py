@@ -37,12 +37,10 @@ class Point:
     def get_coords(self):
         return self.__x, self.__y
 
-
 class Rectangle:
     def __init__(self, x1, y1, x2, y2):
         self.__sp = (x1, y1)
         self.__ep = (x2, y2)
-
 
     def set_coords(self, sp, ep): # set_coords(self, sp, ep) - изменение текущих координат, где sp, ep - объекты класса Point;
         self.__sp = (sp.__x,sp.__y)
