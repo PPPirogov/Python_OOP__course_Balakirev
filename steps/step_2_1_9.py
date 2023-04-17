@@ -38,14 +38,34 @@ class Point:
         return self.__x, self.__y
 
 class Rectangle:
-    def __init__(self, x1, y1, x2, y2):
-        self.__sp = (x1, y1)
-        self.__ep = (x2, y2)
+    def __init__(self, *args):
+        if len(args) == 4:
+            x1,y1,x2,y2 = args
+            self.__sp = Point(x1, y1)
+            self.__ep = Point(x2, y2)
+        elif len(args) == 2:
+            a,b = args
+            self.__sp = a
+            self.__ep = b
 
     def set_coords(self, sp, ep): # set_coords(self, sp, ep) - изменение текущих координат, где sp, ep - объекты класса Point;
-        self.__sp = (sp.__x,sp.__y)
-        self.__ep = (ep.__x,ep.__y)
+        self.__sp = sp
+        self.__ep = ep
+        #print(self.__sp,self.__ep)
 
     def get_coords(self):  # get_coords(self) - возвращение кортежа из объектов класса Point с текущими координатами прямоугольника (ссылки на локальные свойства __sp и __ep);
         return self.__sp,self.__ep
 
+    def draw(self): #отображение в консоли сообщения: "Прямоугольник с координатами: (x1, y1) (x2, y2)". Здесь x1, y1, x2, y2 - соответствующие числовые значения координат.
+        print(f"Прямоугольник с координатами: {self.__sp.get_coords()} {self.__ep.get_coords()}")
+
+
+rect =  Rectangle(Point(0, 0), Point(20, 34))
+a = Rectangle(0, 0,20, 34)
+print(a.get_coords())
+
+a.set_coords(Point(1, 2), Point(3, 4))
+a.get_coords()
+a.draw()
+
+#a, b = sp.get_coords()
