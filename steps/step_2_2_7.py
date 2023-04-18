@@ -44,7 +44,7 @@ class Stack:
         if object != None:
             while object.next != None:
                 prev = object
-                object = object.next
+                object = object.nextstep_2
             if prev != None:
                 prev.next = None
                 #self.top = None
