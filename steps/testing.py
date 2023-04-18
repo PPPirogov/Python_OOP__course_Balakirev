@@ -1,14 +1,26 @@
-import random
-import string
+class StackObj:
+    def __init__(self, data, next=None):
+        self.__data = data
+        self.__next = next
 
-email_name = random.randint(1,100)
-email_pref = random.randint(1,46)
-generatedSuffix = ''.join(random.choice(string.ascii_lowercase + string.digits+string.ascii_uppercase) for _ in range(email_name))+ '@gmail.com'
+    @property
+    def next(self):
+        return self.next
 
-print (generatedSuffix)
-a = 'dsda'
-print(type(a))
+    @next.setter
+    def next(self, next):
+        self.__next = next
 
-l = -9
-is_minus = l < 0
-print(is_minus)
+    @property
+    def data(self):
+        return self.data
+
+    @data.setter
+    def data(self, data):
+        self.__data = data
+
+    def __del__(self):
+        return self
+
+a = StackObj('dsdasd')
+print(a.__dict__)

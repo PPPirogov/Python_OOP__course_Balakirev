@@ -1,4 +1,5 @@
-# Объявите в программе класс Car, в котором реализуйте объект-свойство с именем model для записи и считывания информации о модели автомобиля из локальной приватной переменной __model.
+# Объявите в программе класс Car, в котором реализуйте объект-свойство с именем model для записи и
+# считывания информации о модели автомобиля из локальной приватной переменной __model.
 #
 # Объект-свойство объявите с помощью декоратора @property. Также в объекте-свойстве model должны быть реализованы проверки:
 #
@@ -15,9 +16,18 @@
 # car.model = "Toyota"
 # P.S. В программе объявить только класс. На экран ничего выводить не нужно.
 class Car:
-    def __init__(self,model):
-        self.__model=model
-        self.fafa ='number'
+    def __init__(self):
+        self.__model = None
 
-c = Car('asd')
-print(c.fafa)
+    @property
+    def model(self):
+        return self.__model
+    @model.setter
+    def model(self,model):
+        if 2 <= len(model) <=100:
+            self.__model=model
+
+
+c = Car()
+c.model = 'dsad'
+print(c.model)
