@@ -1,4 +1,4 @@
-s ='python---eto-----kru--to!'
+s =''
 answer =''
 b =len(s)
 #print(b)
