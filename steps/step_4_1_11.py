@@ -9,10 +9,9 @@ class Vector:
 
     def __add__(self, other):
         if len(self.coords) == len(other):
-            p = tuple([str(self.coords[x] + other.coords[x]) for x in range(len(self.coords))])
-            c = ', '.join(p)
-            print(c)
-            return Vector(c)
+            p = tuple(a + b for a,b in zip(self.coords,other.get_coords()))
+            print(p)
+            return Vector(p)
         else:
             raise TypeError('размерности векторов не совпадают')
 
