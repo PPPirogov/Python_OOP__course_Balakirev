@@ -1,5 +1,10 @@
-myTuple = ("John", "Peter", "Vicky")
+class SmartPhone:
+    pass
 
-x = "#".join(myTuple)
 
-print(x)
+class IPhone(SmartPhone):
+    pass
+print(issubclass(IPhone, SmartPhone))
+print(issubclass(IPhone, object))
+print(issubclass(SmartPhone, IPhone))
+print(issubclass(SmartPhone, IPhone))
